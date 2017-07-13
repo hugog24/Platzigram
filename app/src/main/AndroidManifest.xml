@@ -3,6 +3,13 @@
     package="com.example.android.platzigram">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="false"/>
+
+
 
     <application
         android:allowBackup="true"
@@ -11,6 +18,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        
+        <provider
+            android:authorities="com.example.android.platzigram"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path">
+
+            </meta-data>
+
+        </provider>
+
         <activity android:name=".login.view.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,13 +48,14 @@
                 android:value=".login.view.LoginActivity" />
         </activity>
         <activity android:name=".view.ContainerActivity" />
-
-        <activity android:name=".view.PictureDetailActivity"
+        <activity
+            android:name=".view.PictureDetailActivity"
             android:parentActivityName=".view.ContainerActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.ContainerActivity" />
         </activity>
+        <activity android:name=".post.view.NewPostActivity"></activity>
     </application>
 
 </manifest>

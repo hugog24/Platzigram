@@ -17,4 +17,7 @@
     <string name="profile_tab">Me</string>
     <string name="secondword_detail">Me Gusta</string>
     <string name="login_error">Something happened: </string>
+    <string name="hint_title">Title</string>
+    <string name="hint_description">Description</string>
+    <string name="text_button_createpost">Create Post</string>
 </resources>
