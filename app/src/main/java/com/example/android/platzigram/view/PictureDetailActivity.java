@@ -1,4 +1,4 @@
-package com.example.android.platzigram.views;
+package com.example.android.platzigram.view;
 
 import android.graphics.Color;
 import android.os.Build;
@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.transition.Fade;
-import android.view.View;
 
 import com.example.android.platzigram.R;
 

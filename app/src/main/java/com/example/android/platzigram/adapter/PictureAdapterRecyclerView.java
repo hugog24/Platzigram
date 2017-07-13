@@ -1,4 +1,4 @@
-package com.example.android.platzigram.adapters;
+package com.example.android.platzigram.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,8 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.platzigram.R;
-import com.example.android.platzigram.models.Picture;
-import com.example.android.platzigram.views.PictureDetailActivity;
+import com.example.android.platzigram.model.Picture;
+import com.example.android.platzigram.view.PictureDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.android.platzigram.views;
+package com.example.android.platzigram.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

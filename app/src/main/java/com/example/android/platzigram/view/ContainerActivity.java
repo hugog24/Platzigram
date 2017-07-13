@@ -1,4 +1,4 @@
-package com.example.android.platzigram.views;
+package com.example.android.platzigram.view;
 
 
 import android.support.annotation.IdRes;
@@ -8,9 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.android.platzigram.R;
-import com.example.android.platzigram.views.fragments.HomeFragment;
-import com.example.android.platzigram.views.fragments.ProfileFragment;
-import com.example.android.platzigram.views.fragments.SearchFragment;
+import com.example.android.platzigram.view.fragments.HomeFragment;
+import com.example.android.platzigram.view.fragments.ProfileFragment;
+import com.example.android.platzigram.view.fragments.SearchFragment;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 

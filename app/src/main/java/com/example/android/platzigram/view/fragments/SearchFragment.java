@@ -1,11 +1,10 @@
-package com.example.android.platzigram.views.fragments;
+package com.example.android.platzigram.view.fragments;
 
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -13,8 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.platzigram.R;
-import com.example.android.platzigram.adapters.PictureAdapterRecyclerView;
-import com.example.android.platzigram.models.Picture;
+import com.example.android.platzigram.adapter.PictureAdapterRecyclerView;
+import com.example.android.platzigram.model.Picture;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.android.platzigram.models;
+package com.example.android.platzigram.model;
 
 /**
  * Created by Redhat on 05/07/2017.

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.platzigram.LoginActivity"
+    tools:context="com.example.android.platzigram.login.view.LoginActivity"
     android:background="@color/colorPrimary">
 
     <LinearLayout
@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:background="@drawable/platzigram"
-                android:onClick="goLogoUrl"/>
+                android:onClick="goUrlLogo"/>
 
         </RelativeLayout>
 
@@ -100,6 +100,11 @@
                     android:textSize="@dimen/textsize_donthaveaccount"
                     android:layout_toEndOf="@id/dontHaveAccount"
                     android:onClick="goCreateAccount"/>
+
+                <ProgressBar
+                    android:id="@+id/progressBarLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
             </RelativeLayout>
 

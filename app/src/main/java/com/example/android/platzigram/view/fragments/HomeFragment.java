@@ -1,4 +1,5 @@
-package com.example.android.platzigram.views.fragments;
+package com.example.android.platzigram.view.fragments;
+
 
 
 import android.os.Bundle;
@@ -12,18 +13,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.platzigram.R;
-import com.example.android.platzigram.adapters.PictureAdapterRecyclerView;
-import com.example.android.platzigram.models.Picture;
+import com.example.android.platzigram.adapter.PictureAdapterRecyclerView;
+import com.example.android.platzigram.model.Picture;
 
 import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProfileFragment extends Fragment {
+public class HomeFragment extends Fragment {
 
 
-    public ProfileFragment() {
+    public HomeFragment() {
         // Required empty public constructor
     }
 
@@ -32,10 +33,9 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_profile, container, false);
-        showToolbar("",false,view);
-
-        RecyclerView picturesRecycler=(RecyclerView)view.findViewById(R.id.pictureProfileRecycler);
+        View view=inflater.inflate(R.layout.fragment_home,container,false);
+        showToolbar(getResources().getString(R.string.home_tab),false,view);
+        RecyclerView picturesRecycler=(RecyclerView)view.findViewById(R.id.pictureRecycler);
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -43,17 +43,20 @@ public class ProfileFragment extends Fragment {
         picturesRecycler.setLayoutManager(linearLayoutManager);
         PictureAdapterRecyclerView pictureAdapterRecyclerView=new PictureAdapterRecyclerView(buildPictures(),R.layout.cardview_picture,getActivity());
         picturesRecycler.setAdapter(pictureAdapterRecyclerView);
+
+
         return view;
     }
 
     public ArrayList<Picture> buildPictures() {
-        ArrayList<Picture> pictures=new ArrayList<>();
+      ArrayList<Picture> pictures=new ArrayList<>();
         pictures.add(new Picture("http://novalandtours.com/images/guide/guilin.jpg","Hugo García","4 dias","10 Me Gusta"));
         pictures.add(new Picture("http://novalandtours.com/images/guide/guilin.jpg","Sonia Garcia","5 dias","6 Me Gusta"));
         pictures.add(new Picture("http://novalandtours.com/images/guide/guilin.jpg","Elon Musk","8 dias","25 Me Gusta"));
 
         return pictures;
     }
+
 
     public void showToolbar(String title,boolean upButton, View view)
     {
