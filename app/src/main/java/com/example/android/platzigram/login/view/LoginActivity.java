@@ -2,9 +2,11 @@ package com.example.android.platzigram.login.view;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -14,7 +16,10 @@ import com.example.android.platzigram.R;
 import com.example.android.platzigram.login.presenter.LoginPresenter;
 import com.example.android.platzigram.login.presenter.LoginPresenterImpl;
 import com.example.android.platzigram.view.ContainerActivity;
-import com.example.android.platzigram.view.CreateAccountActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+
 
 public class LoginActivity extends AppCompatActivity implements LoginView{
 
@@ -22,11 +27,29 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     private Button login;
     ProgressBar progressBarLogin;
     private LoginPresenter presenter;
+    private static final String TAG ="LoginActivity" ;
+    public FirebaseAuth firebaseAuth;
+    public FirebaseAuth.AuthStateListener authStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //obtiene informacion del archivo google-services.json
+        firebaseAuth = FirebaseAuth.getInstance();
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                if (firebaseUser != null) {
+                    Log.w(TAG, "Usuario logueado" + firebaseUser.getEmail());
+
+                } else {
+                    Log.w(TAG, "Usuario no logueado");
+                }
+            }
+        };
 
         username=(TextInputEditText)findViewById(R.id.username);
         password=(TextInputEditText)findViewById(R.id.password);
@@ -39,10 +62,19 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.signIn(username.getText().toString(),password.getText().toString());
+
+                signIn(username.getText().toString(),password.getText().toString());
+
+
             }
         });
 
+    }
+
+
+    private void signIn(String username,String password)
+    {
+        presenter.signIn(username,password,this,firebaseAuth);
     }
 
 
@@ -52,11 +84,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
         startActivity(intent); //intent explicito
     }
 
-    @Override
-    public void goHome() {
-        Intent container=new Intent(this, ContainerActivity.class);
-        startActivity(container);
-    }
 
     @Override
     public void goUrlLogo() {
@@ -64,6 +91,16 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
         Intent logo=new Intent(Intent.ACTION_WEB_SEARCH);
         logo.setData(Uri.parse("http://www.platzigram.com"));
         startActivity(logo);
+    }
+
+    public void UrlLogo(View view)
+    {
+        goUrlLogo();
+    }
+
+    public void goCreateAccount(View view)
+    {
+        goCreateAccount();
     }
 
     @Override
@@ -81,7 +118,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     }
 
     @Override
-    public void showProgressBar() {
+    public void showProgressBar()    {
         progressBarLogin.setVisibility(View.VISIBLE);
     }
 
@@ -94,6 +131,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     public void loginError(String error) {
         Toast.makeText(this, getString(R.string.login_error)+error, Toast.LENGTH_SHORT).show();
 
+    }
+
+    @Override
+    public void loginSuccess() {
+        Toast.makeText(getApplicationContext(),("Inicio de sesion exitoso"), Toast.LENGTH_SHORT).show();
+        Intent container=new Intent(this, ContainerActivity.class);
+        startActivity(container);
     }
 
 

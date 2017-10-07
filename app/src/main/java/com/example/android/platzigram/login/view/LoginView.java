@@ -7,11 +7,11 @@ package com.example.android.platzigram.login.view;
 public interface LoginView {
 
     void goCreateAccount();
-    void goHome();
     void goUrlLogo();
     void enableInputs();
     void disableInputs();
     void showProgressBar();
     void hideProgressBar();
     void loginError(String error);
+    void loginSuccess();
 }

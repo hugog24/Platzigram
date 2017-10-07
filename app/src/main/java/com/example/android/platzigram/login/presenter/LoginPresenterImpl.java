@@ -2,7 +2,9 @@ package com.example.android.platzigram.login.presenter;
 
 import com.example.android.platzigram.login.interactor.LoginInteractor;
 import com.example.android.platzigram.login.interactor.LoginInteractorImpl;
+import com.example.android.platzigram.login.view.LoginActivity;
 import com.example.android.platzigram.login.view.LoginView;
+import com.google.firebase.auth.FirebaseAuth;
 
 /**
  * Created by Redhat on 12/07/2017.
@@ -21,16 +23,16 @@ public class LoginPresenterImpl implements LoginPresenter {
     }
 
     @Override
-    public void signIn(String username, String password) {
+    public void signIn(String username, String password, LoginActivity loginActivity, FirebaseAuth firebaseAuth) {
         loginView.disableInputs();
         loginView.showProgressBar();
-        interactor.signIn(username,password);
+        interactor.signIn(username,password,loginActivity,firebaseAuth);
     }
 
     @Override
     public void loginSucess() {
-        loginView.goHome();
         loginView.hideProgressBar();
+        loginView.loginSuccess();
     }
 
     @Override
@@ -39,5 +41,8 @@ public class LoginPresenterImpl implements LoginPresenter {
         loginView.hideProgressBar();
         loginView.loginError(error);
     }
+
+
+
 
 }
